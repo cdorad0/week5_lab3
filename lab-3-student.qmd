@@ -37,9 +37,9 @@ This document is quite plain, meaning it does not have any special formatting. A
 
 In the code chunk below, load in the packages necessary for your analysis. You should only need the `tidyverse` package for this analysis.
 
-```{r}
+```{r message = FALSE, include = FALSE}
 #| label: setup
-
+library(tidyverse)
 ```
 
 # Part 2: Data Context
@@ -68,11 +68,14 @@ We will be investigating the animal species diversity and weights found within p
 
 We are going to use the `read_csv()` function to load in the `surveys.csv` dataset (stored in the data folder). For simplicity, name the data `surveys`. We will learn more about this function next week. 
 
-```{r}
+```{r message = FALSE}
 #| label: load-data
 
+# Read in data
 surveys <- read_csv("data/surveys.csv")
-#glimpse(surveys)
+
+# Overview of the dataset
+glimpse(surveys)
 ```
 
 **1. What are the dimensions (# of rows and columns) of these data?**
