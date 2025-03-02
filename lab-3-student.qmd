@@ -37,8 +37,9 @@ This document is quite plain, meaning it does not have any special formatting. A
 
 In the code chunk below, load in the packages necessary for your analysis. You should only need the `tidyverse` package for this analysis.
 
-```{r message = FALSE, include = FALSE}
+```{r message = FALSE}
 #| label: setup
+# Load necessary packages for analysis
 library(tidyverse)
 ```
 
@@ -64,6 +65,7 @@ We will be investigating the animal species diversity and weights found within p
 | `taxon`           | e.g. Rodent, Reptile, Bird, Rabbit |
 | `plot_type`       | type of plot                       |
 
+
 ## Reading the Data into `R`
 
 We are going to use the `read_csv()` function to load in the `surveys.csv` dataset (stored in the data folder). For simplicity, name the data `surveys`. We will learn more about this function next week. 
@@ -71,7 +73,7 @@ We are going to use the `read_csv()` function to load in the `surveys.csv` datas
 ```{r message = FALSE}
 #| label: load-data
 
-# Read in data
+# Read in the dataset
 surveys <- read_csv("data/surveys.csv")
 
 # Overview of the dataset
@@ -80,11 +82,12 @@ glimpse(surveys)
 
 **1. What are the dimensions (# of rows and columns) of these data?**
 
-<!-- Run the commented code in the load-data chunk to address this question!  -->
+> There are 30,463 rows and 15 columns
 
 **2. What are the data types of the variables in this dataset?**
 
-<!-- Run the commented code in the load-data chunk to address this question!  -->
+> The data types include in the dataset are doubles, characters, and dates. They contain integers, strings, and time stamps. 
+
 
 # Part 3: Exploratory Data Analysis with **`ggplot2`**
 
@@ -96,12 +99,13 @@ To build a `ggplot()`, we will use the following basic template that can be used
 #| eval: false
 #| label: ggplot-template-code
 
-ggplot(data = <DATA>,
-       mapping = aes(<VARIABLE MAPPINGS>)) +
-  <GEOM_FUNCTION>()
+# ggplot(data = <DATA>,
+       # mapping = aes(<VARIABLE MAPPINGS>)) +
+  # <GEOM_FUNCTION>()
 ```
 
 Let's get started!
+
 
 ## Scatterplot
 
@@ -110,23 +114,52 @@ Let's get started!
 ```{r}
 #| label: scatterplot
 
+# Scatterplot between `weight` and `hindfoot_length` 
+ggplot(data = surveys, mapping = aes(x = weight, y = hindfoot_length)) +
+  geom_point()
 ```
 
 We can see there are **a lot** of points plotted on top of each other. Let's try and modify this plot to extract more information from it.
 
 **4. Let's add transparency (`alpha`) to the points, to make the points more transparent and (possibly) easier to see.**
 
-<!-- Add code to the scatterplot you created for question 3! -->
+```{r}
+#| label: scatter-alpha
+
+# Scatterplot between `weight` and `hindfoot_length` 
+ggplot(data = surveys, 
+       mapping = aes(x = weight, y = hindfoot_length, alpha = hindfoot_length)) +
+  geom_point()
+```
 
 Despite our best efforts there is still a substantial amount of overplotting occurring in our scatterplot. Let's try splitting the dataset into smaller subsets and see if that allows for us to see the trends a bit better.
 
 **6. Facet your scatterplot by `species`.**
 
-<!-- Add code to the scatterplot you created for question 3 (and modified for question 4)! -->
+```{r}
+#| label: scatter-facet
+
+# Scatterplot between `weight` and `hindfoot_length` 
+ggplot(data = surveys, 
+       mapping = aes(x = weight, y = hindfoot_length, alpha = hindfoot_length)) +
+  geom_point() +
+  facet_wrap(~ species)
+```
 
 **7. No plot is complete without axis labels and a title. Include reader friendly labels and a title to your plot.**
 
-<!-- Continue to modify the plot you originally created for question 3! -->
+```{r}
+#| label: scatter-labels
+
+# Scatterplot between `weight` and `hindfoot_length` 
+ggplot(data = surveys, 
+       mapping = aes(x = weight, y = hindfoot_length, alpha = hindfoot_length)) + 
+  labs(x = "Weight of Animals (grams)",
+       y = "Length of Hindfoot (mm)",
+       title = "Length of Hindfoot by Weight of Animal Species") + 
+  geom_point() +
+  facet_wrap(~ species)
+```
 
 It takes a larger cognitive load to read text that is rotated. It is common practice in many journals and media outlets to move the $y$-axis label to the top of the graph under the title.
 

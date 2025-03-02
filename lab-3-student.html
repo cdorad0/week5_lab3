@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>lab-3-student</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="lab-3-student_files/libs/clipboard/clipboard.min.js"></script>
+<script src="lab-3-student_files/libs/quarto-html/quarto.js"></script>
+<script src="lab-3-student_files/libs/quarto-html/popper.min.js"></script>
+<script src="lab-3-student_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="lab-3-student_files/libs/quarto-html/anchor.min.js"></script>
+<link href="lab-3-student_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="lab-3-student_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="lab-3-student_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="lab-3-student_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="lab-3-student_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+
+
+<section id="part-1-setup" class="level1">
+<h1>Part 1: Setup</h1>
+<section id="github-workflow" class="level2">
+<h2 class="anchored" data-anchor-id="github-workflow">GitHub Workflow</h2>
+<p>Set up your GitHub workflow (either using the method of creating a repository and using Version Control to set up your project or vice versa using the <code>usethis</code> package commands we have learned).</p>
+<p>Use appropriate naming conventions for your project (see Code Style Guide), e.g.&nbsp;lab-3-ggplot2.</p>
+<p>Your project folder should contain the following:</p>
+<ul>
+<li><code>.Rproj</code><br>
+</li>
+<li><code>lab-3-student.qmd</code><br>
+</li>
+<li><code>data</code> folder
+<ul>
+<li><code>surveys.csv</code><br>
+</li>
+</ul></li>
+<li>rendered document (<code>.md</code>)</li>
+</ul>
+<p>You will submit a link to your GitHub repository with all content.</p>
+</section>
+<section id="seeking-help" class="level2">
+<h2 class="anchored" data-anchor-id="seeking-help">Seeking Help</h2>
+<p>Part of learning to program is learning from a variety of resources. Thus, I expect you will use resources that you find on the internet. There is, however, an important balance between copying someone else’s code and <em>using their code to learn</em>. Therefore, if you use external resources, I want to know about it.</p>
+<ul>
+<li><p>If you used Google, you are expected to “inform” me of any resources you used by <strong>pasting the link to the resource in a code comment next to where you used that resource</strong>.</p></li>
+<li><p>If you used ChatGPT, you are expected to “inform” me of the assistance you received by (1) indicating somewhere in the problem that you used ChatGPT (e.g., below the question prompt or as a code comment), and (2) downloading and attaching the <code>.txt</code> file containing your <strong>entire</strong> conversation with ChatGPT. ChatGPT can we used as a “search engine”, but you should not copy and paste prompts from the lab or the code into your lab.</p></li>
+</ul>
+<p>Additionally, you are permitted and encouraged to work with your peers as you complete lab assignments, but <strong>you are expected to do your own work</strong>. Copying from each other is cheating, and letting people copy from you is also cheating. Please don’t do either of those things.</p>
+</section>
+<section id="lab-instructions" class="level2">
+<h2 class="anchored" data-anchor-id="lab-instructions">Lab Instructions</h2>
+<p>The questions in this lab are noted with numbers and boldface. Each question will require you to produce code, whether it is one line or multiple lines.</p>
+<p>This document is quite plain, meaning it does not have any special formatting. As part of your demonstration of creating professional looking Quarto documents, <strong>I would encourage you to spice your documents up (e.g., declaring execution options, specifying how your figures should be output, formatting your code output, etc.).</strong></p>
+</section>
+<section id="setup" class="level2">
+<h2 class="anchored" data-anchor-id="setup">Setup</h2>
+<p>In the code chunk below, load in the packages necessary for your analysis. You should only need the <code>tidyverse</code> package for this analysis.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load necessary packages for analysis</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="part-2-data-context" class="level1">
+<h1>Part 2: Data Context</h1>
+<p>The Portal Project is a long-term ecological study being conducted near Portal, AZ. Since 1977, the site has been used to study the interactions among rodents, ants, and plants, as well as their respective responses to climate. To study the interactions among organisms, researchers experimentally manipulated access to 24 study plots. This study has produced over 100 scientific papers and is one of the longest running ecological studies in the U.S.</p>
+<p>We will be investigating the animal species diversity and weights found within plots at the Portal study site. The data are stored as a comma separated value (CSV) file. Each row holds information for a single animal, and the columns represent:</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Column</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>record_id</code></td>
+<td>Unique ID for the observation</td>
+</tr>
+<tr class="even">
+<td><code>month</code></td>
+<td>month of observation</td>
+</tr>
+<tr class="odd">
+<td><code>day</code></td>
+<td>day of observation</td>
+</tr>
+<tr class="even">
+<td><code>year</code></td>
+<td>year of observation</td>
+</tr>
+<tr class="odd">
+<td><code>plot_id</code></td>
+<td>ID of a particular plot</td>
+</tr>
+<tr class="even">
+<td><code>species_id</code></td>
+<td>2-letter code</td>
+</tr>
+<tr class="odd">
+<td><code>sex</code></td>
+<td>sex of animal (“M”, “F”)</td>
+</tr>
+<tr class="even">
+<td><code>hindfoot_length</code></td>
+<td>length of the hindfoot in mm</td>
+</tr>
+<tr class="odd">
+<td><code>weight</code></td>
+<td>weight of the animal in grams</td>
+</tr>
+<tr class="even">
+<td><code>genus</code></td>
+<td>genus of animal</td>
+</tr>
+<tr class="odd">
+<td><code>species</code></td>
+<td>species of animal</td>
+</tr>
+<tr class="even">
+<td><code>taxon</code></td>
+<td>e.g.&nbsp;Rodent, Reptile, Bird, Rabbit</td>
+</tr>
+<tr class="odd">
+<td><code>plot_type</code></td>
+<td>type of plot</td>
+</tr>
+</tbody>
+</table>
+<section id="reading-the-data-into-r" class="level2">
+<h2 class="anchored" data-anchor-id="reading-the-data-into-r">Reading the Data into <code>R</code></h2>
+<p>We are going to use the <code>read_csv()</code> function to load in the <code>surveys.csv</code> dataset (stored in the data folder). For simplicity, name the data <code>surveys</code>. We will learn more about this function next week.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in the dataset</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>surveys <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/surveys.csv"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Overview of the dataset</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(surveys)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 30,463
+Columns: 15
+$ record_id       &lt;dbl&gt; 63, 64, 65, 66, 67, 68, 69, 71, 74, 75, 78, 79, 81, 82…
+$ month           &lt;dbl&gt; 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, …
+$ day             &lt;dbl&gt; 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19, 19…
+$ year            &lt;dbl&gt; 1977, 1977, 1977, 1977, 1977, 1977, 1977, 1977, 1977, …
+$ plot_id         &lt;dbl&gt; 3, 7, 4, 4, 7, 8, 2, 7, 8, 8, 1, 7, 4, 4, 6, 19, 23, 1…
+$ species_id      &lt;chr&gt; "DM", "DM", "DM", "DM", "DM", "DO", "PF", "DM", "PF", …
+$ sex             &lt;chr&gt; "M", "M", "F", "F", "M", "F", "M", "F", "M", "F", "M",…
+$ hindfoot_length &lt;dbl&gt; 35, 37, 34, 35, 35, 32, 15, 36, 12, 32, 16, 34, 14, 35…
+$ weight          &lt;dbl&gt; 40, 48, 29, 46, 36, 52, 8, 35, 7, 22, 9, 42, 8, 41, 37…
+$ date            &lt;date&gt; 1977-08-19, 1977-08-19, 1977-08-19, 1977-08-19, 1977-…
+$ day_of_week     &lt;chr&gt; "Fri", "Fri", "Fri", "Fri", "Fri", "Fri", "Fri", "Fri"…
+$ plot_type       &lt;chr&gt; "Long-term Krat Exclosure", "Rodent Exclosure", "Contr…
+$ genus           &lt;chr&gt; "Dipodomys", "Dipodomys", "Dipodomys", "Dipodomys", "D…
+$ species         &lt;chr&gt; "merriami", "merriami", "merriami", "merriami", "merri…
+$ taxa            &lt;chr&gt; "Rodent", "Rodent", "Rodent", "Rodent", "Rodent", "Rod…</code></pre>
+</div>
+</div>
+<p><strong>1. What are the dimensions (# of rows and columns) of these data?</strong></p>
+<blockquote class="blockquote">
+<p>There are 30,463 rows and 15 columns</p>
+</blockquote>
+<p><strong>2. What are the data types of the variables in this dataset?</strong></p>
+<blockquote class="blockquote">
+<p>The data types include in the dataset are doubles, characters, and dates. They contain integers, strings, and time stamps.</p>
+</blockquote>
+</section>
+</section>
+<section id="part-3-exploratory-data-analysis-with-ggplot2" class="level1">
+<h1>Part 3: Exploratory Data Analysis with <strong><code>ggplot2</code></strong></h1>
+<p><code>ggplot()</code> graphics are built step by step by adding new elements. Adding layers in this fashion allows for extensive flexibility and customization of plots.</p>
+<p>To build a <code>ggplot()</code>, we will use the following basic template that can be used for different types of plots:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ggplot(data = &lt;DATA&gt;,</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>       <span class="co"># mapping = aes(&lt;VARIABLE MAPPINGS&gt;)) +</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># &lt;GEOM_FUNCTION&gt;()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Let’s get started!</p>
+<section id="scatterplot" class="level2">
+<h2 class="anchored" data-anchor-id="scatterplot">Scatterplot</h2>
+<p><strong>3. First, let’s create a scatterplot of the relationship between <code>weight</code> (on the <span class="math inline">\(x\)</span>-axis) and <code>hindfoot_length</code> (on the <span class="math inline">\(y\)</span>-axis).</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatterplot between `weight` and `hindfoot_length` </span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> surveys, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> weight, <span class="at">y =</span> hindfoot_length)) <span class="sc">+</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="lab-3-student_files/figure-html/scatterplot-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>We can see there are <strong>a lot</strong> of points plotted on top of each other. Let’s try and modify this plot to extract more information from it.</p>
+<p><strong>4. Let’s add transparency (<code>alpha</code>) to the points, to make the points more transparent and (possibly) easier to see.</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatterplot between `weight` and `hindfoot_length` </span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> surveys, </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> weight, <span class="at">y =</span> hindfoot_length, <span class="at">alpha =</span> hindfoot_length)) <span class="sc">+</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="lab-3-student_files/figure-html/scatter-alpha-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Despite our best efforts there is still a substantial amount of overplotting occurring in our scatterplot. Let’s try splitting the dataset into smaller subsets and see if that allows for us to see the trends a bit better.</p>
+<p><strong>6. Facet your scatterplot by <code>species</code>.</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatterplot between `weight` and `hindfoot_length` </span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> surveys, </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> weight, <span class="at">y =</span> hindfoot_length, <span class="at">alpha =</span> hindfoot_length)) <span class="sc">+</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="lab-3-student_files/figure-html/scatter-facet-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p><strong>7. No plot is complete without axis labels and a title. Include reader friendly labels and a title to your plot.</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatterplot between `weight` and `hindfoot_length` </span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> surveys, </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> weight, <span class="at">y =</span> hindfoot_length, <span class="at">alpha =</span> hindfoot_length)) <span class="sc">+</span> </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Weight of Animals (grams)"</span>,</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Length of Hindfoot (mm)"</span>,</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Length of Hindfoot by Weight of Animal Species"</span>) <span class="sc">+</span> </span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="lab-3-student_files/figure-html/scatter-labels-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>It takes a larger cognitive load to read text that is rotated. It is common practice in many journals and media outlets to move the <span class="math inline">\(y\)</span>-axis label to the top of the graph under the title.</p>
+<p><strong>8. Specify your <span class="math inline">\(y\)</span>-axis label to be empty and move the <span class="math inline">\(y\)</span>-axis label into the subtitle.</strong></p>
+<!-- Continue to modify the plot you originally created for question 3! -->
+</section>
+<section id="boxplots" class="level2">
+<h2 class="anchored" data-anchor-id="boxplots">Boxplots</h2>
+<p><strong>9. Create side-by-side boxplots to visualize the distribution of weight within each species.</strong></p>
+<p>A fundamental complaint of boxplots is that they do not plot the raw data. However, with <strong>ggplot</strong> we can add the raw points on top of the boxplots!</p>
+<p><strong>10. Add another layer to your previous plot that plots each observation using <code>geom_point()</code>.</strong></p>
+<!-- Modify the plot you made for question 9! -->
+<p>Alright, this should look less than optimal. Your points should appear rather stacked on top of each other. To make them less stacked, we need to jitter them a bit, using <code>geom_jitter()</code>.</p>
+<p><strong>11. Remove the previous layer and include a <code>geom_jitter()</code> layer instead.</strong></p>
+<!-- Continue to modify the plot you made for question 9! -->
+<p>That should look a bit better! But its really hard to see the points when everything is black.</p>
+<p><strong>12. Set the <code>color</code> aesthetic in <code>geom_jitter()</code> to change the color of the points and add set the <code>alpha</code> aesthetic to add transparency.</strong> You are welcome to use whatever color you wish! Some of my favorites are “springgreen4” and “steelblue4”. Check them out on <a href="https://r-charts.com/colors/">R Charts</a></p>
+<!-- Continue to modify the plot you made for question 9! -->
+<p>Great! Now that you can see the points, you should notice something odd: there are two colors of points still being plotted. Some of the observations are being plotted twice, once from <code>geom_boxplot()</code> as outliers and again from <code>geom_jitter()</code>!</p>
+<p><strong>13. Inspect the help file for <code>geom_boxplot()</code> and see how you can remove the outliers from being plotted by <code>geom_boxplot()</code>. Make this change in your code!</strong></p>
+<!-- Continue to modify the plot you made for question 9! -->
+<p>Some small changes can make <strong>big</strong> differences to plots. One of these changes are better labels for a plot’s axes and legend.</p>
+<p><strong>14. Modify the <span class="math inline">\(x\)</span>-axis and <span class="math inline">\(y\)</span>-axis labels to describe what is being plotted. Be sure to include any necessary units! You might also be getting overlap in the species names – use <code>theme(axis.text.x = ____)</code> or <code>theme(axis.text.y = ____)</code> to turn the species axis labels 45 degrees.</strong></p>
+<!-- Continue to modify the plot you made for question 10! -->
+<p>Some people (and journals) prefer for boxplots to be stacked with a specific orientation! Let’s practice changing the orientation of our boxplots.</p>
+<p><strong>15. Now copy-paste your boxplot code you’ve been adding to above. Flip the orientation of your boxplots. If you created horizontally stacked boxplots, your boxplots should now be stacked vertically. If you had vertically stacked boxplots, you should now stack your boxplots horizontally!</strong></p>
+<p>Notice how vertically stacked boxplots make the species labels more readable than horizontally stacked boxplots (even when the axis labels are rotated). This is good practice!</p>
+</section>
+</section>
+<section id="lab-3-submission" class="level1">
+<h1>Lab 3 Submission</h1>
+<p>For Lab 3 you will submit the link to your GitHub repository. Your rendered file is required to have the following specifications in the YAML options (at the top of your document):</p>
+<ul>
+<li>have the plots embedded (<code>embed-resources: true</code>)</li>
+<li>include your source code (<code>code-tools: true</code>)</li>
+<li>include all your code and output (<code>echo: true</code>)</li>
+</ul>
+<p><strong>If any of the options are not included, your Lab 3 or Challenge 3 assignment will receive an “Incomplete” and you will be required to submit a revision.</strong></p>
+<p>In addition, your document should not have any warnings or messages output in your HTML document. <strong>If your HTML contains warnings or messages, you will receive an “Incomplete” for document formatting and you will be required to submit a revision.</strong></p>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
