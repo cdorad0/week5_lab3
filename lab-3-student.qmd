@@ -165,41 +165,87 @@ It takes a larger cognitive load to read text that is rotated. It is common prac
 
 **8. Specify your $y$-axis label to be empty and move the $y$-axis label into the subtitle.** 
 
-<!-- Continue to modify the plot you originally created for question 3! -->
+```{r}
+#| label: scatter-subtitle
+
+# Scatterplot between `weight` and `hindfoot_length` 
+ggplot(data = surveys, 
+       mapping = aes(x = weight, y = hindfoot_length, alpha = hindfoot_length)) + 
+  labs(x = "Weight of Animals (grams)", 
+       y = " ",
+       subtitle = "Length of Hindfoot (mm)",
+       title = "Length of Hindfoot by Weight of Animal Species") + 
+  geom_point() +
+  facet_wrap(~ species)
+```
+
 
 ## Boxplots
+
+**9. Create side-by-side boxplots to visualize the distribution of weight within each species.**
 
 ```{r}
 #| label: boxplot
 
-
+# Boxplot side-by-side, for the distribution of weight within each species
+ggplot(data = surveys, aes(x = species, y = weight)) +
+  geom_boxplot(position = position_dodge2())
 ```
-
-**9. Create side-by-side boxplots to visualize the distribution of weight within each species.**
 
 A fundamental complaint of boxplots is that they do not plot the raw data. However, with **ggplot** we can add the raw points on top of the boxplots!
 
 **10. Add another layer to your previous plot that plots each observation using `geom_point()`.**
 
-<!-- Modify the plot you made for question 9! -->
+```{r}
+#| label: boxplot-point
+
+# Boxplot - Add points to the plot
+ggplot(data = surveys, aes(x = species, y = weight)) +
+  geom_boxplot(position = position_dodge2()) + 
+  geom_point()
+```
 
 Alright, this should look less than optimal. Your points should appear rather stacked on top of each other. To make them less stacked, we need to jitter them a bit, using `geom_jitter()`.
 
 **11. Remove the previous layer and include a `geom_jitter()` layer instead.**
 
-<!-- Continue to modify the plot you made for question 9! -->
+```{r}
+#| label: boxplot-jitter
+
+# Boxplot - Remove points and add jitter
+ggplot(data = surveys, aes(x = species, y = weight)) +
+  geom_boxplot(position = position_dodge2()) + 
+  geom_jitter()
+
+```
 
 That should look a bit better! But its really hard to see the points when everything is black.
 
 **12. Set the `color` aesthetic in `geom_jitter()` to change the color of the points and add set the `alpha` aesthetic to add transparency.** You are welcome to use whatever color you wish! Some of my favorites are "springgreen4" and "steelblue4". Check them out on [R Charts](https://r-charts.com/colors/)
 
-<!-- Continue to modify the plot you made for question 9! -->
+```{r fig.height = 5.5, fig.width = 6}
+#| label: boxplot-jitter-color
+
+# Boxplot - Add color and transparency to the plot 
+ggplot(data = surveys, aes(x = species, y = weight)) +
+  geom_boxplot(position = position_dodge2()) + 
+  geom_jitter(color = "springgreen4", alpha = 0.8)
+
+```
 
 Great! Now that you can see the points, you should notice something odd: there are two colors of points still being plotted. Some of the observations are being plotted twice, once from `geom_boxplot()` as outliers and again from `geom_jitter()`!
 
 **13. Inspect the help file for `geom_boxplot()` and see how you can remove the outliers from being plotted by `geom_boxplot()`. Make this change in your code!**
 
-<!-- Continue to modify the plot you made for question 9! -->
+```{r fig.height = 5.5, fig.width = 6}
+#| label: boxplot-jitter-outliers
+
+# Boxplot - Remove outliers from being plotter by `geom_boxplot`
+ggplot(data = surveys, aes(x = species, y = weight)) +
+  geom_boxplot(position = position_dodge2(), outliers = FALSE) + 
+  geom_jitter(color = "springgreen4", alpha = 0.8)
+
+```
 
 Some small changes can make **big** differences to plots. One of these changes are better labels for a plot's axes and legend.
 

@@ -290,23 +290,76 @@ $ taxa            &lt;chr&gt; "Rodent", "Rodent", "Rodent", "Rodent", "Rodent", 
 </div>
 <p>It takes a larger cognitive load to read text that is rotated. It is common practice in many journals and media outlets to move the <span class="math inline">\(y\)</span>-axis label to the top of the graph under the title.</p>
 <p><strong>8. Specify your <span class="math inline">\(y\)</span>-axis label to be empty and move the <span class="math inline">\(y\)</span>-axis label into the subtitle.</strong></p>
-<!-- Continue to modify the plot you originally created for question 3! -->
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatterplot between `weight` and `hindfoot_length` </span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> surveys, </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> weight, <span class="at">y =</span> hindfoot_length, <span class="at">alpha =</span> hindfoot_length)) <span class="sc">+</span> </span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Weight of Animals (grams)"</span>, </span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">" "</span>,</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Length of Hindfoot (mm)"</span>,</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Length of Hindfoot by Weight of Animal Species"</span>) <span class="sc">+</span> </span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="lab-3-student_files/figure-html/scatter-subtitle-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
 </section>
 <section id="boxplots" class="level2">
 <h2 class="anchored" data-anchor-id="boxplots">Boxplots</h2>
 <p><strong>9. Create side-by-side boxplots to visualize the distribution of weight within each species.</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Boxplot side-by-side, for the distribution of weight within each species</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> surveys, <span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> weight)) <span class="sc">+</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">position =</span> <span class="fu">position_dodge2</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="lab-3-student_files/figure-html/boxplot-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
 <p>A fundamental complaint of boxplots is that they do not plot the raw data. However, with <strong>ggplot</strong> we can add the raw points on top of the boxplots!</p>
 <p><strong>10. Add another layer to your previous plot that plots each observation using <code>geom_point()</code>.</strong></p>
-<!-- Modify the plot you made for question 9! -->
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Boxplot - Add points to the plot</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> surveys, <span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> weight)) <span class="sc">+</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">position =</span> <span class="fu">position_dodge2</span>()) <span class="sc">+</span> </span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="lab-3-student_files/figure-html/boxplot-point-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
 <p>Alright, this should look less than optimal. Your points should appear rather stacked on top of each other. To make them less stacked, we need to jitter them a bit, using <code>geom_jitter()</code>.</p>
 <p><strong>11. Remove the previous layer and include a <code>geom_jitter()</code> layer instead.</strong></p>
-<!-- Continue to modify the plot you made for question 9! -->
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Boxplot - Remove points and add jitter</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> surveys, <span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> weight)) <span class="sc">+</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">position =</span> <span class="fu">position_dodge2</span>()) <span class="sc">+</span> </span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="lab-3-student_files/figure-html/boxplot-jitter-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
 <p>That should look a bit better! But its really hard to see the points when everything is black.</p>
 <p><strong>12. Set the <code>color</code> aesthetic in <code>geom_jitter()</code> to change the color of the points and add set the <code>alpha</code> aesthetic to add transparency.</strong> You are welcome to use whatever color you wish! Some of my favorites are “springgreen4” and “steelblue4”. Check them out on <a href="https://r-charts.com/colors/">R Charts</a></p>
-<!-- Continue to modify the plot you made for question 9! -->
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Boxplot - Add color and transparency to the plot </span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> surveys, <span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> weight)) <span class="sc">+</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">position =</span> <span class="fu">position_dodge2</span>()) <span class="sc">+</span> </span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">color =</span> <span class="st">"springgreen4"</span>, <span class="at">alpha =</span> <span class="fl">0.8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="lab-3-student_files/figure-html/boxplot-jitter-color-1.png" class="img-fluid" width="576"></p>
+</div>
+</div>
 <p>Great! Now that you can see the points, you should notice something odd: there are two colors of points still being plotted. Some of the observations are being plotted twice, once from <code>geom_boxplot()</code> as outliers and again from <code>geom_jitter()</code>!</p>
 <p><strong>13. Inspect the help file for <code>geom_boxplot()</code> and see how you can remove the outliers from being plotted by <code>geom_boxplot()</code>. Make this change in your code!</strong></p>
-<!-- Continue to modify the plot you made for question 9! -->
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Boxplot - Remove outliers from being plotter by `geom_boxplot`</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> surveys, <span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">y =</span> weight)) <span class="sc">+</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">position =</span> <span class="fu">position_dodge2</span>(), <span class="at">outliers =</span> <span class="cn">FALSE</span>) <span class="sc">+</span> </span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">color =</span> <span class="st">"springgreen4"</span>, <span class="at">alpha =</span> <span class="fl">0.8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="lab-3-student_files/figure-html/boxplot-jitter-outliers-1.png" class="img-fluid" width="576"></p>
+</div>
+</div>
 <p>Some small changes can make <strong>big</strong> differences to plots. One of these changes are better labels for a plot’s axes and legend.</p>
 <p><strong>14. Modify the <span class="math inline">\(x\)</span>-axis and <span class="math inline">\(y\)</span>-axis labels to describe what is being plotted. Be sure to include any necessary units! You might also be getting overlap in the species names – use <code>theme(axis.text.x = ____)</code> or <code>theme(axis.text.y = ____)</code> to turn the species axis labels 45 degrees.</strong></p>
 <!-- Continue to modify the plot you made for question 10! -->
