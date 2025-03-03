@@ -1,3 +1,15 @@
+---
+title: "Lab 3: Exploring Rodents with `ggplot2`"
+author: "Catalina Dorado"
+format: html
+execute: 
+  echo: true
+  message: false
+  warning: false
+  code-tools: true
+  embed-resources: true
+---
+
 # Part 1: Setup
 
 ## GitHub Workflow
@@ -251,14 +263,35 @@ Some small changes can make **big** differences to plots. One of these changes a
 
 **14. Modify the $x$-axis and $y$-axis labels to describe what is being plotted. Be sure to include any necessary units! You might also be getting overlap in the species names -- use `theme(axis.text.x = ____)` or `theme(axis.text.y = ____)` to turn the species axis labels 45 degrees.**
 
-<!-- Continue to modify the plot you made for question 10! -->
+```{r fig.height = 5.5, fig.width = 6}
+#| label: boxplot-labels
+
+# Boxplot - Add labels to the plots
+ggplot(data = surveys, aes(x = species, y = weight)) +
+  geom_boxplot(position = position_dodge2(), outliers = FALSE) + 
+  geom_jitter(color = "springgreen4", alpha = 0.8) + 
+  labs(x = "Species of Animals",
+       y = "Weight of Animals (grams)", 
+       title = "Animal Species by Weight") + 
+  theme(axis.text.x = element_text(angle = 45))
+
+```
 
 Some people (and journals) prefer for boxplots to be stacked with a specific orientation! Let's practice changing the orientation of our boxplots.
 
 **15. Now copy-paste your boxplot code you've been adding to above. Flip the orientation of your boxplots. If you created horizontally stacked boxplots, your boxplots should now be stacked vertically. If you had vertically stacked boxplots, you should now stack your boxplots horizontally!**
 
-```{r}
-#| label: rotated-boxplot
+```{r fig.height = 5.5, fig.width = 6}
+#| label: boxplot-rotated
+
+# Boxplot - Flip the orientation of the plot
+ggplot(data = surveys, aes(x = species, y = weight)) +
+  geom_boxplot(position = position_dodge2(), outliers = FALSE) + 
+  geom_jitter(color = "springgreen4", alpha = 0.8) + 
+  labs(x = "Species of Animals",
+       y = "Weight of Animals (grams)", 
+       title = "Animal Species by Weight") + 
+  coord_flip()
 
 ```
 
